@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate, AnimatePresence } from 'framer-motion';
-import { Star, Calendar, MapPin, Phone, Instagram, ArrowRight, CheckCircle2, Play, Sparkles, Menu, X, ChevronDown, Clock } from 'lucide-react';
+import { Star, Calendar, MapPin, Phone, Instagram, ArrowRight, CheckCircle2, Play, Sparkles, Menu, X, ChevronDown, Clock, PhoneCall } from 'lucide-react';
 
 /**
  * SKINN360 - GONDAL
@@ -34,15 +34,13 @@ const Navigation = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'py-4 bg-white/80 backdrop-blur-xl shadow-sm border-b border-white/20' : 'py-8 bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <motion.div 
-            initial={{ rotate: 0 }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="w-8 h-8 rounded-full border-2 border-yellow-400 border-dashed"
+
+         <img
+            src="images/logo.png"
+            alt="Logo"
+            className="h-10 w-auto object-contain cursor-pointer transition-transform duration-300 hover:scale-105"
           />
-          <span className={`text-2xl font-serif tracking-widest font-bold ${scrolled ? 'text-gray-900' : 'text-gray-900'}`}>
-            SKINN<span className="text-yellow-600">360</span>
-          </span>
+
         </div>
 
         {/* Desktop Menu */}
@@ -57,8 +55,8 @@ const Navigation = () => {
             whileTap={{ scale: 0.95 }}
             className="px-6 py-2 bg-gradient-to-r from-yellow-300 to-yellow-500 text-white rounded-full font-medium shadow-lg shadow-yellow-500/30 flex items-center gap-2"
           >
-            <Calendar size={16} />
-            <span>Book Now</span>
+            <PhoneCall size={16} />
+            <a href="tel:+919586412805">Book Now</a>
           </motion.button>
         </div>
 
@@ -139,22 +137,28 @@ const Hero = () => {
             Advanced dermatology meets luxury care. Experience the future of skin and hair health at Skinn360.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 bg-gray-900 text-white rounded-full font-medium flex items-center justify-center gap-3 shadow-2xl shadow-gray-900/20"
-            >
-              Book Consultation <ArrowRight size={18} />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 bg-white/50 backdrop-blur-sm border border-white text-gray-900 rounded-full font-medium hover:bg-white transition-colors"
-            >
-              View Treatments
-            </motion.button>
-          </div>
+      <div className="flex flex-col sm:flex-row gap-4">
+        <a href="#location-book">
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="px-8 py-4 bg-gray-900 text-white rounded-full font-medium flex items-center justify-center gap-3 shadow-2xl shadow-gray-900/20"
+          >
+            Book Consultation <ArrowRight size={18} />
+          </motion.button>
+        </a>
+
+        <a href="#treatments">
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="px-8 py-4 bg-white/50 backdrop-blur-sm border border-white text-gray-900 rounded-full font-medium hover:bg-white transition-colors"
+          >
+            View Treatments
+          </motion.button>
+        </a>
+      </div>
+
         </motion.div>
 
         {/* Visual Content */}
@@ -166,7 +170,7 @@ const Hero = () => {
            </motion.div>
 
            <motion.div style={{ y: y1 }} className="absolute bottom-20 left-10 w-56 h-72 rounded-full overflow-hidden border-4 border-white/30 shadow-xl z-10 backdrop-blur-md bg-white/10">
-              <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=600" alt="Skincare Product" className="w-full h-full object-cover opacity-90" />
+              <img src="images/model-face.jpg" alt="Glowing Skin" className="w-full h-full object-cover opacity-90" />
            </motion.div>
 
            {/* Floating Particles */}
@@ -210,7 +214,7 @@ const AboutDoctor = () => {
           <div className="md:w-1/2 relative">
              <div className="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800" 
+                  src="images/doctor.jpeg" 
                   alt="Dr. Skinn360" 
                   className="w-full h-full object-cover"
                 />
@@ -227,10 +231,10 @@ const AboutDoctor = () => {
 
           <div className="md:w-1/2 space-y-6">
             <h3 className="text-yellow-600 font-bold tracking-widest uppercase text-sm">Meet the Expert</h3>
-            <h2 className="text-4xl md:text-5xl font-serif text-gray-900">Dr. Ananya Mehta</h2>
-            <p className="text-xl text-gray-600 font-medium">MD Dermatology & Cosmetology</p>
+            <h2 className="text-4xl md:text-5xl font-serif text-gray-900">Dr. Parag Talavia</h2>
+            <p className="text-xl text-gray-600 font-medium">MD Skin & Dermatology</p>
             <p className="text-gray-500 leading-relaxed">
-              With over a decade of experience in clinical and aesthetic dermatology, Dr. Mehta brings a holistic approach to skincare in Gondal. Specializing in advanced laser treatments, anti-aging protocols, and hair restoration, she believes in enhancing natural beauty rather than changing it.
+              With over a decade of experience in clinical and aesthetic dermatology, Dr. Parag Talavia, a Gold Medalist, brings a holistic and patient-centric approach to skincare in Gondal. He specializes in the diagnosis and treatment of skin diseases and hair disorders, along with advanced laser treatments, anti-aging protocols, and hair restoration. Dr. Talavia believes in enhancing natural beauty and restoring skin and hair health rather than changing one’s natural appearance.
             </p>
             
             <div className="grid grid-cols-2 gap-6 pt-4">
@@ -239,7 +243,7 @@ const AboutDoctor = () => {
                 <p className="text-sm text-gray-500 uppercase tracking-wider">Happy Patients</p>
               </div>
               <div>
-                <h4 className="text-3xl font-serif text-gray-900">12+</h4>
+                <h4 className="text-3xl font-serif text-gray-900">20+</h4>
                 <p className="text-sm text-gray-500 uppercase tracking-wider">Years Exp.</p>
               </div>
             </div>
@@ -289,22 +293,22 @@ const Services = () => {
     {
       title: "Laser Hair Reduction",
       description: "Pain-free, advanced diode laser technology for silky smooth skin.",
-      image: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&q=80&w=600"
+      image: "https://www.rmskinclinic.com/wp-content/uploads/2023/07/upper_lip_laser_hair_removal_toronto-1024x682-1024x682-1.jpg"
     },
     {
       title: "Hydra-Medi Facial",
       description: "Deep cleansing and hydration that restores your natural glow instantly.",
-      image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=600"
+      image: "https://as2.ftcdn.net/jpg/04/11/74/15/1000_F_411741559_WFQsgPbqfhlpUc4UznbzmPniADsY4qcR.jpg"
     },
     {
       title: "Acne & Scar Treatment",
       description: "Customized protocols to clear active acne and smooth out textures.",
-      image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"
+      image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=600"
     },
     {
       title: "Hair Restoration",
       description: "PRP and mesotherapy solutions to regain hair density and confidence.",
-      image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707?auto=format&fit=crop&q=80&w=600"
+      image: "images/hair-growth.png"
     }
   ];
 
@@ -329,11 +333,24 @@ const Services = () => {
 };
 
 const WhyUs = () => {
-  const features = [
-    { icon: CheckCircle2, title: "US-FDA Approved Tech", desc: "We use only the safest, world-class equipment." },
-    { icon: Star, title: "Personalized Protocols", desc: "No cookie-cutter plans. Your skin is unique." },
-    { icon: Sparkles, title: "Luxury Experience", desc: "Ambiance that relaxes you the moment you step in." },
-  ];
+const features = [
+  {
+    icon: CheckCircle2,
+    title: "Accurate Diagnosis & Safe Technology",
+    desc: "Every treatment begins with precise diagnosis and US-FDA approved technology for safe, effective results."
+  },
+  {
+    icon: Star,
+    title: "Personalized & Result-Oriented Care",
+    desc: "No one-size-fits-all solutions. We create customized treatment plans focused on visible, long-term results."
+  },
+  {
+    icon: Sparkles,
+    title: "Ethical, Transparent & Compassionate Care",
+    desc: "We believe in honest guidance, clear communication, and empathetic care at every step of your journey."
+  }
+];
+
 
   return (
     <section id="why-us" className="py-24 px-6 bg-gradient-to-b from-yellow-50/50 to-white">
@@ -342,7 +359,7 @@ const WhyUs = () => {
            {/* Abstract Layout */}
            <div className="grid grid-cols-2 gap-4">
              <div className="space-y-4 translate-y-12">
-               <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&q=80&w=400" className="rounded-2xl shadow-lg" alt="Clinic Interior" />
+               <img src="images/young-woman-3.png" className="rounded-2xl shadow-lg" alt="Clinic Interior" />
                <div className="bg-rose-100 p-6 rounded-2xl">
                  <p className="font-serif italic text-rose-800">"The best investment you can make is in yourself."</p>
                </div>
@@ -357,7 +374,7 @@ const WhyUs = () => {
         </div>
 
         <div className="order-1 md:order-2">
-          <h2 className="text-4xl font-serif text-gray-900 mb-8">Why Gondal Chooses <span className="text-yellow-600">Skinn360</span></h2>
+          <h2 className="text-4xl font-serif text-gray-900 mb-8"> Why Patients Trust <span className="text-yellow-600">Skinn360</span></h2>
           <div className="space-y-8">
             {features.map((f, i) => (
               <motion.div 
@@ -383,116 +400,182 @@ const WhyUs = () => {
   );
 };
 
+
 const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      type: 'video',
+      type: "video",
       quote: "My acne is completely gone!",
       author: "Priya K.",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400"
+      image:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400",
     },
     {
       id: 2,
-      type: 'text',
-      quote: "The clinic ambiance is so soothing, unlike typical hospitals. Dr. Mehta really listens to your concerns. The hydra-facial is a must-try before any wedding!",
-      author: "Rahul D.",
-      role: "Google Review",
-      avatar: "https://randomuser.me/api/portraits/women/44.jpg"
+      type: "text",
+      quote:
+        "I had been struggling with my skin for a long time, but after consulting At skinn 360 (Dr parag talaviya) everything changed. Their treatment plan, patience and detailed explanations helped my skin become healthy and glowing again. I’m truly thankful for the care and transformation they brought into my skincare journey",
+      author: "Tanvi J.",
+      role: "Google Review"
     },
     {
       id: 3,
-      type: 'video',
+      type: "video",
       quote: "Best hair treatment in Gondal.",
       author: "Amit S.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400"
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
     },
     {
       id: 4,
-      type: 'text',
-      quote: "I visited for laser hair reduction and the results are amazing. Dr. Ananya is very professional and the staff is cooperative.",
-      author: "Sneha M.",
+      type: "text",
+      quote:
+        "I visited Dr. Parag Talaviya’s dermatology clinic for hair treatment and had a great experience. The doctor was very professional and explained everything clearly. The treatment worked well for me — I’ve seen noticeable improvement in my hair. Highly recommend for anyone dealing with hair issues!",
+      author: "Aryan S.",
       role: "Google Review",
-      avatar: "https://randomuser.me/api/portraits/women/65.jpg"
+      avatar: "", // no image → initials will show
     },
     {
       id: 5,
-      type: 'video',
+      type: "video",
       quote: "Glowing skin after just one session!",
       author: "Vikram R.",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400"
-    }
+      image:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400",
+    },
   ];
 
-  // Duplicate the array to create a seamless loop
   const carouselItems = [...testimonials, ...testimonials];
+
+  const getInitials = (name = "") =>
+    name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
 
   return (
     <section id="reviews" className="py-24 px-0 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-6 mb-16">
-        <h2 className="text-center text-4xl font-serif">Real Stories, <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-yellow-500">Real Glow</span></h2>
+        <h2 className="text-center text-4xl font-serif">
+          Real Stories,{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-yellow-500">
+            Real Glow
+          </span>
+        </h2>
       </div>
-      
-      {/* Carousel Track */}
-      <div className="flex overflow-hidden relative w-full mask-image-linear-gradient">
-        <motion.div 
-          className="flex gap-8 px-6"
+
+      <div className="relative w-full overflow-hidden">
+        <motion.div
+          className="flex gap-8 px-6 items-stretch"
           animate={{ x: "-50%" }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-          style={{ width: "fit-content" }}
+          style={{ width: "max-content" }}
         >
           {carouselItems.map((item, index) => (
-             <div key={`${item.id}-${index}`} className="w-[300px] md:w-[350px] shrink-0">
-               {item.type === 'video' ? (
-                 <div className="relative aspect-[9/16] bg-gray-900 rounded-[2rem] overflow-hidden shadow-2xl group cursor-pointer h-full">
-                    <img src={item.image} className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" alt="Review" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform">
-                        <Play className="text-white fill-white ml-1" />
-                      </div>
+            <div
+              key={`${item.id}-${index}`}
+              className="w-[300px] md:w-[350px] shrink-0 flex"
+            >
+              {item.type === "video" ? (
+                <div className="relative aspect-[9/16] bg-gray-900 rounded-[2rem] overflow-hidden shadow-2xl group cursor-pointer w-full">
+                  <img
+                    src={item.image}
+                    className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                    alt="Review"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform">
+                      <Play className="text-white fill-white ml-1" />
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                      <p className="text-white font-serif text-lg">{item.quote}</p>
-                      <p className="text-yellow-300 text-sm">- {item.author}</p>
-                    </div>
-                 </div>
-               ) : (
-                 <div className="bg-white border border-white/60 p-8 rounded-[2rem] shadow-xl flex flex-col justify-between h-full min-h-[500px] md:min-h-auto aspect-[9/16] md:aspect-auto relative overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                    {/* Subtle decorative background gradient */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-yellow-50 to-transparent rounded-bl-[4rem] -z-0 opacity-50" />
-                    
-                    <div className="relative z-10">
-                      <div className="flex justify-between items-start mb-8">
-                        <div className="flex gap-1">
-                          {[1,2,3,4,5].map(s => <Star key={s} size={18} className="text-yellow-400 fill-yellow-400" />)}
-                        </div>
-                        {/* Google G Logo SVG */}
-                        <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-sm opacity-90">
-                           <svg viewBox="0 0 24 24" className="w-4 h-4" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                        </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                    <p className="text-white font-serif text-lg">
+                      {item.quote}
+                    </p>
+                    <p className="text-yellow-300 text-sm">
+                      – {item.author}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-white border border-white/60 p-8 rounded-[2rem] shadow-xl flex flex-col justify-between w-full aspect-[9/16] md:aspect-auto relative">
+                  <div>
+                    <div className="flex justify-between items-start mb-8">
+                      <div className="flex gap-1">
+                        {[1, 2, 3, 4, 5].map((s) => (
+                          <Star
+                            key={s}
+                            size={18}
+                            className="text-yellow-400 fill-yellow-400"
+                          />
+                        ))}
                       </div>
-                      
-                      <p className="text-gray-700 font-medium leading-loose text-lg font-serif relative">
-                        <span className="text-4xl text-yellow-200 absolute -top-4 -left-2 font-serif opacity-50">"</span>
-                        {item.quote}
-                      </p>
+                      <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-sm opacity-90">
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="w-4 h-4"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                            fill="#4285F4"
+                          />
+                          <path
+                            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                            fill="#34A853"
+                          />
+                          <path
+                            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                            fill="#FBBC05"
+                          />
+                          <path
+                            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                            fill="#EA4335"
+                          />
+                        </svg>
+                      </div>
                     </div>
 
-                    <div className="flex items-center gap-4 mt-8 pt-6 border-t border-gray-100 relative z-10">
-                      <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md">
-                        <img src={item.avatar} alt="User" className="w-full h-full object-cover" />
-                      </div>
-                      <div>
-                        <p className="font-bold text-gray-900 font-serif tracking-wide">{item.author}</p>
-                        <div className="flex items-center gap-1.5">
-                            <CheckCircle2 size={12} className="text-green-500/80" />
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{item.role}</p>
-                        </div>
+                    <p className="text-gray-700 font-medium leading-loose text-lg font-serif">
+                      {item.quote}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-4 mt-8 pt-6 border-t border-gray-100">
+                    <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-gray-100 border border-gray-200">
+                      {item.avatar ? (
+                        <img
+                          src={item.avatar}
+                          alt={item.author}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-sm font-bold text-gray-600 font-serif">
+                          {getInitials(item.author)}
+                        </span>
+                      )}
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900 font-serif">
+                        {item.author}
+                      </p>
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle2
+                          size={12}
+                          className="text-green-500/80"
+                        />
+                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                          {item.role}
+                        </p>
                       </div>
                     </div>
-                 </div>
-               )}
-             </div>
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
         </motion.div>
       </div>
@@ -500,9 +583,11 @@ const Testimonials = () => {
   );
 };
 
+
+
 const LocationBook = () => {
   return (
-    <section className="py-24 px-6">
+    <section id="location-book" className="py-24 px-6">
       <div className="max-w-7xl mx-auto bg-gray-900 rounded-[3rem] overflow-hidden relative shadow-2xl">
         {/* Background Texture */}
         <div className="absolute inset-0 opacity-20">
@@ -512,20 +597,24 @@ const LocationBook = () => {
 
         <div className="relative z-10 grid md:grid-cols-2">
           <div className="p-12 md:p-16 text-white space-y-8">
-            <h2 className="text-4xl md:text-5xl font-serif">Visit Our Sanctuary</h2>
+            <h2 className="text-4xl md:text-5xl font-serif">Visit Our Clinic</h2>
             <p className="text-gray-300 text-lg">Ready to transform your skin? Book an appointment today and start your journey to radiance.</p>
             
             <div className="space-y-6 pt-4">
               <div className="flex items-start gap-4">
                 <MapPin className="text-yellow-400 shrink-0 mt-1" />
                 <p className="text-gray-300">
-                  204, Royal Complex, Near College Chowk,<br />
+                  C-VikramSinhji Complex, Near Bus Stand Road <br />
                   Gondal, Gujarat 360311
                 </p>
               </div>
               <div className="flex items-center gap-4">
                 <Phone className="text-yellow-400 shrink-0" />
-                <p className="text-gray-300">+91 98765 43210</p>
+                <p className="text-gray-300">+91 95864 12805</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <Phone className="text-yellow-400 shrink-0" />
+                <p className="text-gray-300">+91 95864 12805</p>
               </div>
               <div className="flex items-start gap-4">
                 <Clock className="text-yellow-400 shrink-0 mt-1" />
@@ -536,13 +625,14 @@ const LocationBook = () => {
               </div>
               <div className="flex items-center gap-4">
                 <Instagram className="text-yellow-400 shrink-0" />
-                <p className="text-gray-300">@skinn360_gondal</p>
+                <p className="text-gray-300">@dr_parag_talavia</p>
               </div>
             </div>
 
             <div className="pt-8">
-              <button className="w-full md:w-auto px-10 py-4 bg-white text-gray-900 rounded-full font-bold text-lg hover:bg-yellow-400 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                Book Appointment Now
+              <button className= " flex items-center gap-2 w-full md:w-auto px-10 py-4 bg-white text-gray-900 rounded-full font-bold text-lg hover:bg-yellow-400 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                <PhoneCall size={16} />
+               <a href="tel:+919586412805">Book Appointment Now</a>
               </button>
             </div>
           </div>
@@ -569,10 +659,13 @@ const Footer = () => (
   <footer className="bg-white py-12 border-t border-gray-100">
     <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
       <div className="flex items-center gap-2">
-         <div className="w-6 h-6 rounded-full border border-yellow-400 border-dashed animate-spin-slow" />
-         <span className="font-serif font-bold text-gray-900">SKINN360</span>
+          <img
+            src="images/logo.png"
+            alt="Logo"
+            className="h-10 w-auto object-contain cursor-pointer transition-transform duration-300 hover:scale-105"
+          />
       </div>
-      <p className="text-gray-400 text-sm">© 2024 Skinn360 Gondal. All rights reserved.</p>
+      <p className="text-gray-400 text-sm">© 2025 Skinn360 Gondal. All rights reserved.</p>
       <div className="flex gap-6">
         <a href="#" className="text-gray-400 hover:text-yellow-600 text-sm">Privacy</a>
         <a href="#" className="text-gray-400 hover:text-yellow-600 text-sm">Terms</a>
