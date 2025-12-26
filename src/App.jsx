@@ -640,7 +640,7 @@ const LocationBook = () => {
           <div className="relative h-96 md:h-auto bg-gray-800">
             {/* Embedded Map Placeholder */}
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59183.33238682701!2d70.762884!3d21.961944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3958223637171e09%3A0xc3f6071306385b2e!2sGondal%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.2843782607674!2d70.79659752326151!3d21.962046143718638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39583896563400b7%3A0xae94bb93a120638b!2sDr.%20Parag%20Talavia&#39;%20Skinn%20360%20Skin%20Laser%20and%20Cosmetic%20Center!5e0!3m2!1sen!2sin!4v1766759356469!5m2!1sen!2sin" 
               width="100%" 
               height="100%" 
               style={{ border: 0, filter: 'grayscale(100%) invert(90%)' }} 
