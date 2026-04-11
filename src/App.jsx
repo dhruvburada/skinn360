@@ -1,6 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate, AnimatePresence } from 'framer-motion';
-import { Star, Calendar, MapPin, Phone, Instagram, ArrowRight, CheckCircle2, Play, Sparkles, Menu, X, ChevronDown, Clock, PhoneCall } from 'lucide-react';
+import React, { useLayoutEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Star, MapPin, Phone, Instagram, ArrowRight, CheckCircle2, Play, Sparkles, ChevronDown, Clock, PhoneCall } from 'lucide-react';
+import { Layout } from './components/Layout';
+import { GoldIcon } from './components/GoldIcon';
+import TheExpertPage from './pages/TheExpertPage';
 
 /**
  * SKINN360 - GONDAL
@@ -8,98 +12,7 @@ import { Star, Calendar, MapPin, Phone, Instagram, ArrowRight, CheckCircle2, Pla
  * A visually hydrated interface mimicking the texture of luxury serums.
  */
 
-// --- Assets & Icons ---
-// Using Lucide for base icons, but wrapping them in gold-plated containers.
-
-const GoldIcon = ({ icon: Icon, size = 24 }) => (
-  <div className="relative inline-flex items-center justify-center">
-    <Icon size={size} className="text-yellow-600 relative z-10" strokeWidth={1.5} />
-    <div className="absolute inset-0 bg-yellow-200 blur-md opacity-40 rounded-full" />
-  </div>
-);
-
 // --- Components ---
-
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'py-4 bg-white/80 backdrop-blur-xl shadow-sm border-b border-white/20' : 'py-8 bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center gap-2">
-
-         <img
-            src="images/logo.png"
-            alt="Logo"
-            className="h-10 w-auto object-contain cursor-pointer transition-transform duration-300 hover:scale-105"
-          />
-
-        </div>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          {['Treatments', 'The Doctor', 'Why Us', 'Reviews'].map((item) => (
-            <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-gray-600 hover:text-yellow-600 transition-colors uppercase tracking-widest text-xs font-semibold">
-              {item}
-            </a>
-          ))}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-2 bg-gradient-to-r from-yellow-300 to-yellow-500 text-white rounded-full font-medium shadow-lg shadow-yellow-500/30 flex items-center gap-2"
-          >
-            <PhoneCall size={16} />
-            <a href="tel:+919586412805">Book Now</a>
-          </motion.button>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button className="md:hidden text-gray-800" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 overflow-hidden"
-          >
-            <div className="p-6 flex flex-col gap-4 items-center">
-              {['Treatments', 'The Doctor', 'Why Us', 'Reviews'].map((item) => (
-                <a key={item} onClick={() => setIsOpen(false)} href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-gray-800 text-lg font-serif">
-                  {item}
-                </a>
-              ))}
-               <button className="w-full px-6 py-3 bg-yellow-400 text-white rounded-full font-medium mt-4">
-                Book Appointment
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
-};
-
-const FluidBackground = () => (
-  <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-    <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-rose-200/40 rounded-full blur-[120px] mix-blend-multiply animate-blob" />
-    <div className="absolute top-[20%] right-[-10%] w-[40%] h-[40%] bg-yellow-200/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-2000" />
-    <div className="absolute bottom-[-10%] left-[20%] w-[60%] h-[60%] bg-blue-100/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-4000" />
-    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150" />
-  </div>
-);
 
 const Hero = () => {
   const { scrollY } = useScroll();
@@ -232,25 +145,28 @@ const AboutDoctor = () => {
           <div className="md:w-1/2 space-y-6">
             <h3 className="text-yellow-600 font-bold tracking-widest uppercase text-sm">Meet the Expert</h3>
             <h2 className="text-4xl md:text-5xl font-serif text-gray-900">Dr. Parag Talavia</h2>
-            <p className="text-xl text-gray-600 font-medium">MD Skin & Dermatology</p>
+            <p className="text-xl text-gray-600 font-medium">MD Skin Dermatologist, Cosmetologist & Hair Expert</p>
             <p className="text-gray-500 leading-relaxed">
               With over a decade of experience in clinical and aesthetic dermatology, Dr. Parag Talavia, a Gold Medalist, brings a holistic and patient-centric approach to skincare in Gondal. He specializes in the diagnosis and treatment of skin diseases and hair disorders, along with advanced laser treatments, anti-aging protocols, and hair restoration. Dr. Talavia believes in enhancing natural beauty and restoring skin and hair health rather than changing one’s natural appearance.
             </p>
             
             <div className="grid grid-cols-2 gap-6 pt-4">
               <div>
-                <h4 className="text-3xl font-serif text-gray-900">10k+</h4>
+                <h4 className="text-3xl font-serif text-gray-900">150k+</h4>
                 <p className="text-sm text-gray-500 uppercase tracking-wider">Happy Patients</p>
               </div>
               <div>
-                <h4 className="text-3xl font-serif text-gray-900">20+</h4>
+                <h4 className="text-3xl font-serif text-gray-900">15+</h4>
                 <p className="text-sm text-gray-500 uppercase tracking-wider">Years Exp.</p>
               </div>
             </div>
 
-            <button className="text-yellow-700 font-semibold border-b-2 border-yellow-400 pb-1 inline-flex items-center gap-2 hover:gap-4 transition-all">
-              Read Full Bio <ArrowRight size={16} />
-            </button>
+            <Link
+              to="/expert"
+              className="text-yellow-700 font-semibold border-b-2 border-yellow-400 pb-1 inline-flex items-center gap-2 hover:gap-4 transition-all"
+            >
+              Read More <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </div>
@@ -655,43 +571,38 @@ const LocationBook = () => {
   );
 };
 
-const Footer = () => (
-  <footer className="bg-white py-12 border-t border-gray-100">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-      <div className="flex items-center gap-2">
-          <img
-            src="images/logo.png"
-            alt="Logo"
-            className="h-10 w-auto object-contain cursor-pointer transition-transform duration-300 hover:scale-105"
-          />
-      </div>
-      <p className="text-gray-400 text-sm">© 2025 Skinn360 Gondal. All rights reserved.</p>
-      <div className="flex gap-6">
-        <a href="#" className="text-gray-400 hover:text-yellow-600 text-sm">Privacy</a>
-        <a href="#" className="text-gray-400 hover:text-yellow-600 text-sm">Terms</a>
-      </div>
-    </div>
-  </footer>
-);
+const HomePage = () => {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    const id = location.hash.replace(/^#/, '');
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) {
+      requestAnimationFrame(() =>
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      );
+    }
+  }, [location.pathname, location.hash]);
 
-const App = () => {
   return (
-    <div className="bg-orange-50/30 min-h-screen text-gray-800 font-sans selection:bg-yellow-200 selection:text-yellow-900">
-      <FluidBackground />
-      <Navigation />
-      
-      <main>
-        <Hero />
-        <AboutDoctor />
-        <Services />
-        <WhyUs />
-        <Testimonials />
-        <LocationBook />
-      </main>
-
-      <Footer />
-    </div>
+    <Layout>
+      <Hero />
+      <AboutDoctor />
+      <Services />
+      <WhyUs />
+      <Testimonials />
+      <LocationBook />
+    </Layout>
   );
 };
+
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/expert" element={<TheExpertPage />} />
+    </Routes>
+  </BrowserRouter>
+);
 
 export default App;
