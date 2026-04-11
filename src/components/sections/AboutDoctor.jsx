@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { DOCTOR_INFO } from '../../constants/data';
 
@@ -47,9 +48,12 @@ const AboutDoctor = () => {
               </div>
             </div>
 
-            <button className="text-yellow-700 font-semibold border-b-2 border-yellow-400 pb-1 inline-flex items-center gap-2 hover:gap-4 transition-all">
-              Read Full Bio <ArrowRight size={16} />
-            </button>
+            <Link
+              to="/expert"
+              className="text-yellow-700 font-semibold border-b-2 border-yellow-400 pb-1 inline-flex items-center gap-2 hover:gap-4 transition-all"
+            >
+              Read More <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </div>
