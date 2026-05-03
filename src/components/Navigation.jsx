@@ -35,15 +35,25 @@ export const Navigation = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-8">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item}
-              href={sectionHref(item)}
-              className="text-gray-600 hover:text-yellow-600 transition-colors uppercase tracking-widest text-xs font-semibold"
-            >
-              {item}
-            </a>
-          ))}
+          {NAV_ITEMS.map((item) =>
+            item === 'Treatments' ? (
+              <Link
+                key={item}
+                to="/treatments"
+                className="text-gray-600 hover:text-yellow-600 transition-colors uppercase tracking-widest text-xs font-semibold"
+              >
+                {item}
+              </Link>
+            ) : (
+              <a
+                key={item}
+                href={sectionHref(item)}
+                className="text-gray-600 hover:text-yellow-600 transition-colors uppercase tracking-widest text-xs font-semibold"
+              >
+                {item}
+              </a>
+            )
+          )}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -68,16 +78,27 @@ export const Navigation = () => {
             className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 overflow-hidden"
           >
             <div className="p-6 flex flex-col gap-4 items-center">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item}
-                  onClick={() => setIsOpen(false)}
-                  href={sectionHref(item)}
-                  className="text-gray-800 text-lg font-serif"
-                >
-                  {item}
-                </a>
-              ))}
+              {NAV_ITEMS.map((item) =>
+                item === 'Treatments' ? (
+                  <Link
+                    key={item}
+                    to="/treatments"
+                    onClick={() => setIsOpen(false)}
+                    className="text-gray-800 text-lg font-serif"
+                  >
+                    {item}
+                  </Link>
+                ) : (
+                  <a
+                    key={item}
+                    onClick={() => setIsOpen(false)}
+                    href={sectionHref(item)}
+                    className="text-gray-800 text-lg font-serif"
+                  >
+                    {item}
+                  </a>
+                )
+              )}
               <button type="button" className="w-full px-6 py-3 bg-yellow-400 text-white rounded-full font-medium mt-4">
                 Book Appointment
               </button>

@@ -9,6 +9,7 @@ import BeforeAfterSection from './components/sections/BeforeAfterSection';
 import WhyUs from './components/sections/WhyUs';
 import Testimonials from './components/sections/Testimonials';
 import LocationBook from './components/sections/LocationBook';
+import TreatmentsPage from './pages/TreatmentsPage';
 
 /**
  * SKINN360 - GONDAL
@@ -46,6 +47,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/expert" element={<TheExpertPage />} />
+      <Route path="/treatments" element={<TreatmentsPage />} />
     </Routes>
   </BrowserRouter>
 );

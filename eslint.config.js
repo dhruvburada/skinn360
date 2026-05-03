@@ -23,7 +23,8 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // framer-motion: `motion` is used as <motion.div /> but ESLint may not count it
+      'no-unused-vars': ['error', { varsIgnorePattern: '^([A-Z_].*|motion)$' }],
     },
   },
 ])

@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import ServiceCard from '../ui/ServiceCard';
 import { SERVICES } from '../../constants/data';
 
@@ -20,6 +23,22 @@ const Services = () => {
             <ServiceCard key={idx} {...service} index={idx} />
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-14 flex justify-center"
+        >
+          <Link
+            to="/treatments"
+            className="inline-flex items-center gap-3 rounded-full bg-gray-900 px-8 py-4 text-sm font-semibold text-white shadow-2xl shadow-gray-900/20 transition hover:bg-gray-800"
+          >
+            Explore our Treatments
+            <ArrowRight size={18} />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

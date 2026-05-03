@@ -27,35 +27,36 @@ export const SERVICES = [
   }
 ];
 
+/** Local before/after assets in /public/images — paired by treatment name from filenames */
 export const BEFORE_AFTER_COMPARISONS = [
   {
-    beforeImage: "https://images.unsplash.com/photo-1542517455-c08170c02ec0?auto=format&fit=crop&q=80&w=600",
-    afterImage: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600",
-    title: "Acne Scar Reduction",
-    sessions: "4 Sessions (3 Months)",
-    description: "Combined laser resurfacing and chemical peels."
+    beforeImage: '/images/acne-before.png',
+    afterImage: `/images/${encodeURIComponent('acne after.png')}`,
+    title: 'Acne & Scar Treatment',
+    sessions: 'Personalized plan',
+    description: 'Clearer skin and smoother texture with protocols matched to your acne type.',
   },
   {
-    beforeImage: "https://images.unsplash.com/photo-1614059624508-333333333333?auto=format&fit=crop&q=80&w=600",
-    afterImage: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=600",
-    title: "Skin Brightening",
-    sessions: "2 Sessions (1 Month)",
-    description: "Hydra-Medi Facial with Vitamin C infusion."
+    beforeImage: '/images/skinn-brightning-before.png',
+    afterImage: '/images/skinn-brightning-after.png',
+    title: 'Skin Brightening',
+    sessions: 'Glow protocol',
+    description: 'Brighter, more even radiance—aligned with our skin brightening and glow therapies.',
   },
   {
-    beforeImage: "https://images.unsplash.com/photo-1606900224244-67c85848bb99?auto=format&fit=crop&q=80&w=600",
-    afterImage: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&q=80&w=600",
-    title: "Anti-Aging Lift",
-    sessions: "1 Session",
-    description: "HIFU Non-surgical face lift procedure."
+    beforeImage: '/images/anti-aging-before.png',
+    afterImage: '/images/anti-aging-after.png',
+    title: 'Anti-Aging',
+    sessions: 'Lift & firming',
+    description: 'Firmer, more youthful-looking skin with our anti-aging and tightening approach.',
   },
   {
-    beforeImage: "https://images.unsplash.com/photo-1505944270255-72b8c68c6a70?auto=format&fit=crop&q=80&w=600",
-    afterImage: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=600",
-    title: "Pigmentation Removal",
-    sessions: "6 Sessions",
-    description: "Q-Switch laser for even skin tone."
-  }
+    beforeImage: '/images/pigmentation-before.png',
+    afterImage: '/images/pigmentation-after.png',
+    title: 'Pigmentation',
+    sessions: 'Even-tone focus',
+    description: 'Reduced visible spots and more uniform tone with targeted pigmentation care.',
+  },
 ];
 
 export const WHY_US_FEATURES = [
@@ -120,7 +121,7 @@ export const CONTACT_INFO = {
   city: "Gondal, Gujarat 360311",
   phone: "+91 95864 12805",
   instagram: "@dr_parag_talavia",
-  morningHours: "9:00 AM – 2:00 PM (Morning)",
+  morningHours: "10:00 AM – 2:00 PM (Morning)",
   eveningHours: "5:00 PM – 8:00 PM (Evening)",
   mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.2843793993375!2d70.79659749999999!3d21.9620461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39583896563400b7%3A0xae94bb93a120638b!2sDr.%20Parag%20Talavia'%20Skinn%20360%20Skin%20Laser%20and%20Cosmetic%20Center!5e0!3m2!1sen!2sin!4v1770974933187!5m2!1sen!2sin"
 };
@@ -132,8 +133,8 @@ export const DOCTOR_INFO = {
   bio: "With over a decade of experience in clinical and aesthetic dermatology, Dr. Parag Talavia, a Gold Medalist, brings a holistic and patient-centric approach to skincare in Gondal. He specializes in the diagnosis and treatment of skin diseases and hair disorders, along with advanced laser treatments, anti-aging protocols, and hair restoration. Dr. Talavia believes in enhancing natural beauty and restoring skin and hair health rather than changing one's natural appearance.",
   image: "images/doctor.jpeg",
   stats: {
-    patients: "10k+",
-    experience: "20+"
+    patients: "150k+",
+    experience: "15+"
   }
 };
 
