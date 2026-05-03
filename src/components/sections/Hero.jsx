@@ -1,13 +1,34 @@
-import {useScroll, useTransform } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { useScroll, useTransform } from 'framer-motion';
 import { Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
+
+/** Tight params + srcset — hero cards are ~224–256px wide on md+ */
+const HERO_GLOW_BASE =
+  'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=75';
+const HERO_GLOW_SRC = `${HERO_GLOW_BASE}&w=480&h=600`;
+const HERO_GLOW_SRCSET = `${HERO_GLOW_BASE}&w=320&h=400 320w, ${HERO_GLOW_BASE}&w=480&h=600 480w, ${HERO_GLOW_BASE}&w=640&h=800 640w`;
+
+const HERO_MODEL_SRC = '/images/model-face.jpg';
+
 /**
  * Hero - Main hero section with parallax effects
  */
 const Hero = () => {
+  const [showHeroMedia, setShowHeroMedia] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches
+  );
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const sync = () => setShowHeroMedia(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden pt-20">
@@ -64,17 +85,45 @@ const Hero = () => {
 
         </motion.div>
 
-        {/* Visual Content */}
-        <div className="relative h-[600px] hidden md:block">
-          {/* Abstract "Serum" Shapes */}
-          <motion.div style={{ y: y2 }} className="absolute top-10 right-10 w-64 h-80 rounded-[4rem] overflow-hidden border border-white/50 shadow-2xl z-20">
-            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600" alt="Glowing Skin" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-yellow-500/20 to-transparent" />
-          </motion.div>
+        {/* Visual Content — only mount images at md+ so mobile avoids large downloads */}
+        <div className="relative hidden h-[600px] md:block">
+          {showHeroMedia && (
+            <>
+              <motion.div
+                style={{ y: y2 }}
+                className="absolute right-10 top-10 z-20 h-80 w-64 overflow-hidden rounded-[4rem] border border-white/50 shadow-2xl"
+              >
+                <img
+                  src={HERO_GLOW_SRC}
+                  srcSet={HERO_GLOW_SRCSET}
+                  sizes="256px"
+                  width={480}
+                  height={600}
+                  alt="Radiant skin aesthetic"
+                  decoding="async"
+                  fetchPriority="high"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-yellow-500/20 to-transparent" />
+              </motion.div>
 
-          <motion.div style={{ y: y1 }} className="absolute bottom-20 left-10 w-56 h-72 rounded-full overflow-hidden border-4 border-white/30 shadow-xl z-10 backdrop-blur-md bg-white/10">
-            <img src="images/model-face.jpg" alt="Glowing Skin" className="w-full h-full object-cover opacity-90" />
-          </motion.div>
+              <motion.div
+                style={{ y: y1 }}
+                className="absolute bottom-20 left-10 z-10 h-72 w-56 overflow-hidden rounded-full border-4 border-white/30 bg-white/10 shadow-xl backdrop-blur-md"
+              >
+                <img
+                  src={HERO_MODEL_SRC}
+                  width={448}
+                  height={576}
+                  sizes="224px"
+                  alt="Clinic skincare portrait"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="h-full w-full object-cover opacity-90"
+                />
+              </motion.div>
+            </>
+          )}
 
           {/* Floating Particles */}
           {[...Array(5)].map((_, i) => (

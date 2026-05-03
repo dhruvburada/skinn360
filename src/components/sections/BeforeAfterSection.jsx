@@ -19,6 +19,14 @@ const BeforeAfterSection = () => {
 
   const itemsPerView = isDesktop ? 2 : 1;
   const maxIndex = BEFORE_AFTER_COMPARISONS.length - itemsPerView;
+  const total = BEFORE_AFTER_COMPARISONS.length;
+
+  /** Load visible slides + next (prefetch) so we do not fetch all large PNGs at once */
+  const shouldLoadImages = (idx) => {
+    if (idx >= currentIndex && idx < currentIndex + itemsPerView) return true;
+    if (idx === currentIndex + itemsPerView && idx < total) return true;
+    return false;
+  };
 
   const nextSlide = () => {
     setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
@@ -50,7 +58,11 @@ const BeforeAfterSection = () => {
               >
                 {BEFORE_AFTER_COMPARISONS.map((item, idx) => (
                   <div key={idx} className={`w-full md:w-1/2 flex-shrink-0 px-4 md:px-6`}>
-                    <BeforeAfterSlider {...item} />
+                    <BeforeAfterSlider
+                      {...item}
+                      loadImages={shouldLoadImages(idx)}
+                      fetchPriority={idx === currentIndex ? 'high' : 'auto'}
+                    />
                   </div>
                 ))}
               </motion.div>

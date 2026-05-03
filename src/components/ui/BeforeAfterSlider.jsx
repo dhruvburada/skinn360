@@ -3,11 +3,28 @@ import { Clock } from 'lucide-react';
 
 /**
  * BeforeAfterSlider - Interactive before/after comparison slider
+ * @param {boolean} [loadImages=true] — when false, skips image requests until visible (carousel perf).
+ * @param {'high'|'low'|'auto'} [fetchPriority='auto'] — hint for the first paint of this slide.
  */
-const BeforeAfterSlider = ({ beforeImage, afterImage, title, sessions, description }) => {
+const BeforeAfterSlider = ({
+  beforeImage,
+  afterImage,
+  title,
+  sessions,
+  description,
+  loadImages = true,
+  fetchPriority = 'auto',
+}) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [imagesCommitted, setImagesCommitted] = useState(loadImages);
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (loadImages) setImagesCommitted(true);
+  }, [loadImages]);
+
+  const showImages = imagesCommitted;
 
   const handleMove = (event) => {
     if (!containerRef.current) return;
@@ -53,12 +70,18 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title, sessions, descripti
         onClick={handleMove}
       >
         {/* Before Image (Background) */}
-        <img
-          src={beforeImage}
-          alt="Before"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        />
-        <div className="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+        {showImages ? (
+          <img
+            src={beforeImage}
+            alt={`${title} — before`}
+            decoding="async"
+            fetchPriority={fetchPriority}
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200" aria-hidden />
+        )}
+        <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-black/60 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-sm">
           Before
         </div>
 
@@ -67,11 +90,16 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title, sessions, descripti
           className="absolute inset-0 w-full h-full overflow-hidden"
           style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
         >
-          <img
-            src={afterImage}
-            alt="After"
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-          />
+          {showImages ? (
+            <img
+              src={afterImage}
+              alt={`${title} — after`}
+              decoding="async"
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-gray-100" aria-hidden />
+          )}
           <div className="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
             After
           </div>
